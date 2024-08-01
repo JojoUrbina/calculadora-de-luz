@@ -11,15 +11,96 @@ import {
 import { useState } from "react";
 import CalculateIcon from "@mui/icons-material/Calculate";
 
-const Formulario = () => {
+const Formulario = ({ setResultadoMensual }) => {
   const [kilovatios, setKilovatios] = useState("");
   const [potencia1, setpotencia1] = useState("");
   const [potencia2, setpotencia2] = useState("");
-  const [facturadora, setFacturadora] = useState("enery");
+  const [facturadora, setFacturadora] = useState("naturgy");
+
+  const facturadoras = {
+    naturgy: {
+      tarifaPotencia: 0.1037,
+      tarifaEnergia: 0.1149,
+    },
+    iberdrola: {
+      tarifaPotencia: 0.1082,
+      tarifaEnergia: 0.1134,
+    },
+    endesa: {
+      tarifaPotencia: 0.0976,
+      tarifaEnergia: 0.1105,
+    },
+    eneri: {
+      tarifaPotencia: 0.109,
+      tarifaEnergia: 0.118,
+    },
+    ganaEnergia: {
+      tarifaPotencia: 0.1052,
+      tarifaEnergia: 0.1167,
+    },
+    gptEnergia: {
+      tarifaPotencia: 0.093368,
+      tarifaEnergia: 0.15,
+    },
+  };
+
+  const IVA = 0.21;
+  const DiasFacturados = 30;
+  const impuestoElectricidad = 0.05113;
+  const alquilerContador = 0.81;
+  const potenciaContratada = potencia1 + potencia2;
+  const facturadoraContratada = facturadora;
+  const precioKWH = facturadoras[facturadoraContratada].tarifaEnergia;
+  /*  const precioPotencia1 = facturadora === "naturgy" ? 0.103663 : 0.16; */
+  const precioPotencia1 = facturadoras[facturadoraContratada].tarifaPotencia;
+  const precioPotencia2 = facturadora === "naturgy" ? 0.034042 : 0.16;
+
+  const terminoPotencia = calcularTerminoPotencia(
+    potenciaContratada,
+    precioPotencia1,
+    DiasFacturados
+  );
+  const terminoEnergia = calcularTerminoEnergia(kilovatios, precioKWH);
+
+  const costoImpuestoElectricidad =
+    (terminoPotencia + terminoEnergia) * impuestoElectricidad;
+
+  const totalSinIva = calcularSubTotal(
+    terminoPotencia,
+    terminoEnergia,
+    costoImpuestoElectricidad,
+    alquilerContador
+  );
+  const costoIva = totalSinIva * IVA;
+
+  function calcularTerminoPotencia(
+    potenciaContratada,
+    precioPotencia1,
+    DiasFacturados
+  ) {
+    return potenciaContratada * precioPotencia1 * DiasFacturados;
+  }
+  function calcularTerminoEnergia(kilovatiosConsumidos, precioKWH) {
+    return kilovatiosConsumidos * precioKWH;
+  }
+  function calcularSubTotal(
+    terminoPotencia,
+    terminoEnergia,
+    costoImpuestoElectricidad,
+    alquilerContador
+  ) {
+    return (
+      terminoPotencia +
+      terminoEnergia +
+      costoImpuestoElectricidad +
+      alquilerContador
+    );
+  }
+  const calcularTotalFactura = (totalSinIva, costoIva) =>
+    totalSinIva + costoIva;
 
   const handleChange = (event) => {
     setFacturadora(event.target.value);
-    console.log(facturadora);
   };
 
   return (
@@ -29,7 +110,7 @@ const Formulario = () => {
         id="kilovatios-consumidos"
         type="number"
         onInput={(e) => {
-          setKilovatios(e.target.value);
+          setKilovatios(+e.target.value);
         }}
         value={kilovatios}
         sx={{
@@ -50,7 +131,7 @@ const Formulario = () => {
           id="kilovatios-consumidos"
           type="number"
           onInput={(e) => {
-            setpotencia1(e.target.value);
+            setpotencia1(+e.target.value);
           }}
           value={potencia1}
           sx={{
@@ -72,7 +153,7 @@ const Formulario = () => {
           id="kilovatios-consumidos"
           type="number"
           onInput={(e) => {
-            setpotencia2(e.target.value);
+            setpotencia2(+e.target.value);
           }}
           value={potencia2}
           sx={{
@@ -109,7 +190,9 @@ const Formulario = () => {
           />
         }
         onClick={() => {
-          console.log("hola");
+          setResultadoMensual(
+            +calcularTotalFactura(totalSinIva, costoIva).toFixed(3)
+          );
         }}
       >
         Calcular
@@ -125,13 +208,26 @@ function ControlledRadioButtonsGroup({ facturadora, handleChange }) {
         Facturadora
       </FormLabel>
       <RadioGroup
-        aria-labelledby="demo-controlled-radio-buttons-group"
+        aria-labelledby="demo-controlled-radio-buttons-group "
         name="controlled-radio-buttons-group"
         value={facturadora}
         onChange={handleChange}
+        className="facturadoras"
       >
-        <FormControlLabel value="enery" control={<Radio />} label="Enery" />
-        <FormControlLabel value="naturgy" control={<Radio />} label="Naturgy" />
+        <FormControlLabel
+          value="gptEnergia"
+          control={<Radio />}
+          label="GPTEnergia"
+          className="facturadora"
+        />
+        <FormControlLabel value="naturgy" control={<Radio />} label="Naturgy" className="facturadora" />
+        <FormControlLabel value="endesa" control={<Radio />} label="Endesa" className="facturadora" />
+        <FormControlLabel
+          value="iberdrola"
+          control={<Radio />}
+          label="Iberdrola"
+          className="facturadora"
+        />
       </RadioGroup>
     </FormControl>
   );

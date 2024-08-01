@@ -3,15 +3,12 @@ import Calculadora from "../components/Calculadora";
 import Resultados from "../components/Resultados";
 
 function App() {
-  const [resultadoMensual, setResultadoMensual] = useState(0)
+  const [resultadoMensual, setResultadoMensual] = useState("")
   const [resultadoAnual, setResultadoAnual] = useState(0)
-  const CalcularResultadoMensual = ()=>{
-    
-  }
   return (
       <div className="aplicacion">
-        <Calculadora/>
-        <Resultados/>
+        <Calculadora setResultadoMensual={setResultadoMensual} />
+        <Resultados resultadoMensual={resultadoMensual}/>
       </div>
   );
 }

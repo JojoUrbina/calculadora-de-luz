@@ -1,10 +1,10 @@
 import Formulario from "./Formulario";
 
-const Calculadora = () => {
+const Calculadora = ({setResultadoMensual}) => {
   return (
     <div id="calculadora">
       <h2>Calculadora de luz</h2>
-      <Formulario/>
+      <Formulario setResultadoMensual={setResultadoMensual}/>
     </div>
   );
 };
