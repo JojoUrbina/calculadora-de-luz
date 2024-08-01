@@ -116,14 +116,12 @@ p{
 @media (max-width: 600px) {
   .aplicacion {
     flex-direction: column;
-    height: 100%;
-    
+    height: 100%; 
   }
   #resultados {
     border-bottom-left-radius: initial
   }  
    #root {
-
     height: 100%;
   } 
 }
