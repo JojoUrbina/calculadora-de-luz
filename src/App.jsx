@@ -4,7 +4,7 @@ import Resultados from "../components/Resultados";
 
 function App() {
   const [resultadoMensual, setResultadoMensual] = useState(0)
-  const [resultadoAnual, setResultadoAnual] = useState(0)
+  //const [resultadoAnual, setResultadoAnual] = useState(0)
   return (
       <div className="aplicacion">
         <Calculadora setResultadoMensual={setResultadoMensual} />

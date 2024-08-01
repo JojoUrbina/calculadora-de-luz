@@ -38,10 +38,7 @@ const Formulario = ({ setResultadoMensual }) => {
       tarifaPotencia: 0.1052,
       tarifaEnergia: 0.1167,
     },
-    gptEnergia: {
-      tarifaPotencia: 0.093368,
-      tarifaEnergia: 0.15,
-    },
+
   };
 
   const IVA = 0.21;
@@ -215,9 +212,9 @@ function ControlledRadioButtonsGroup({ facturadora, handleChange }) {
         className="facturadoras"
       >
         <FormControlLabel
-          value="gptEnergia"
+          value="eneri"
           control={<Radio />}
-          label="GPTEnergia"
+          label="Eneri"
           className="facturadora"
         />
         <FormControlLabel value="naturgy" control={<Radio />} label="Naturgy" className="facturadora" />
