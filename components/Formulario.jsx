@@ -178,6 +178,7 @@ const Formulario = ({ setResultadoMensual }) => {
       <Button
         id="btn-calcular"
         variant="contained"
+        
         startIcon={
           <CalculateIcon
             sx={{

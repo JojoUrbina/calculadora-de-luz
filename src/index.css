@@ -20,10 +20,10 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 500;
 }
-p{
+p {
   font-size: 12px;
   margin-bottom: 13px;
-  color: rgba(245, 245, 245, 0.753)
+  color: rgba(245, 245, 245, 0.753);
 }
 
 #root {
@@ -67,7 +67,7 @@ p{
   border-bottom-left-radius: 50px;
 }
 #resultados h2 {
- margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* #formulario .MuiInputBase-root{
@@ -77,8 +77,8 @@ p{
   margin: 30px;
  } */
 
-#contenedor-resultado{
-  background-color: #0E2532;
+#contenedor-resultado {
+  background-color: #0e2532;
   border-top: 4px solid var(--Lima-color);
   border-radius: 10px;
   box-shadow: 0px 0px 2px 0px var(--pizarra-500);
@@ -86,42 +86,50 @@ p{
   width: 100%;
   height: 200px;
 }
-#resultado-mensual{
+#resultado-mensual {
   font-size: 2.5em;
   color: var(--Lima-color);
 }
-#resultado-anual{
+#resultado-anual {
   font-size: 1.2em;
   color: var(--blanco-color);
 }
-#linea{
+#linea {
   border-bottom: 1px solid rgba(255, 255, 255, 0.171);
   margin-bottom: 10px;
 }
-#btn-calcular{
+#btn-calcular {
+  display: flex;
+
   width: 200px;
-  margin: 10px 0;
+  margin: 10px auto;
   border-radius: 30px;
   background-color: var(--Lima-color);
   color: var(--pizarra-900);
-  font-weight:bold;
+  font-weight: bold;
 }
 .facturadoras {
   width: 100%;
-  flex-direction:row !important;
+  flex-direction: row !important;
 }
-.facturadoras .facturadora{
+.facturadoras .facturadora {
   width: 46%;
 }
 @media (max-width: 600px) {
   .aplicacion {
     flex-direction: column;
-    height: 100%; 
+    height: 100%;
   }
   #resultados {
-    border-bottom-left-radius: initial
-  }  
-   #root {
+    border-bottom-left-radius: initial;
+  }
+  #root {
     height: 100%;
-  } 
+  }
+  #btn-calcular {
+    width: 100%;
+    margin: 10px auto 0 auto;
+  }
+  #resultados h2 {
+text-align: center;  }
 }
