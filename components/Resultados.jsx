@@ -11,7 +11,7 @@ const Resultados = ({resultadoMensual}) => {
         <p id="resultado-mensual">€{resultadoMensual }</p>
         <div id="linea"></div>
         <p>Tu factura anual sera de:</p>
-        <p id="resultado-anual">€{resultadoMensual * 12}</p>
+        <p id="resultado-anual">€{+(resultadoMensual * 12).toFixed(3)}</p>
       </div>
     </div>
   );
