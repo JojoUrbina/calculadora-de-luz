@@ -3,7 +3,7 @@ import Calculadora from "../components/Calculadora";
 import Resultados from "../components/Resultados";
 
 function App() {
-  const [resultadoMensual, setResultadoMensual] = useState("")
+  const [resultadoMensual, setResultadoMensual] = useState(0)
   const [resultadoAnual, setResultadoAnual] = useState(0)
   return (
       <div className="aplicacion">

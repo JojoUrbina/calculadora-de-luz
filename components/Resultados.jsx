@@ -8,7 +8,7 @@ const Resultados = ({resultadoMensual}) => {
       </p>
       <div id="contenedor-resultado">
         <p>Tu factura mensual sera de:</p>
-        <p id="resultado-mensual">€{resultadoMensual}</p>
+        <p id="resultado-mensual">€{resultadoMensual }</p>
         <div id="linea"></div>
         <p>Tu factura anual sera de:</p>
         <p id="resultado-anual">€{resultadoMensual * 12}</p>
