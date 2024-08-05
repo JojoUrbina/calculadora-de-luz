@@ -38,7 +38,10 @@ const Formulario = ({ setResultadoMensual }) => {
       tarifaPotencia: 0.1052,
       tarifaEnergia: 0.1167,
     },
-
+    factorEnergia: {
+      tarifaPotencia: 0.0031,
+      tarifaEnergia: 0.2100,
+    },
   };
 
   const IVA = 0.21;
@@ -50,7 +53,7 @@ const Formulario = ({ setResultadoMensual }) => {
   const precioKWH = facturadoras[facturadoraContratada].tarifaEnergia;
   /*  const precioPotencia1 = facturadora === "naturgy" ? 0.103663 : 0.16; */
   const precioPotencia1 = facturadoras[facturadoraContratada].tarifaPotencia;
-  const precioPotencia2 = facturadora === "naturgy" ? 0.034042 : 0.16;
+  //const precioPotencia2 = facturadora === "naturgy" ? 0.034042 : 0.16;
 
   const terminoPotencia = calcularTerminoPotencia(
     potenciaContratada,
@@ -178,7 +181,6 @@ const Formulario = ({ setResultadoMensual }) => {
       <Button
         id="btn-calcular"
         variant="contained"
-        
         startIcon={
           <CalculateIcon
             sx={{
@@ -218,12 +220,34 @@ function ControlledRadioButtonsGroup({ facturadora, handleChange }) {
           label="Eneri"
           className="facturadora"
         />
-        <FormControlLabel value="naturgy" control={<Radio />} label="Naturgy" className="facturadora" />
-        <FormControlLabel value="endesa" control={<Radio />} label="Endesa" className="facturadora" />
+        <FormControlLabel
+          value="naturgy"
+          control={<Radio />}
+          label="Naturgy"
+          className="facturadora"
+        />
+        <FormControlLabel
+          value="endesa"
+          control={<Radio />}
+          label="Endesa"
+          className="facturadora"
+        />
         <FormControlLabel
           value="iberdrola"
           control={<Radio />}
           label="Iberdrola"
+          className="facturadora"
+        />
+        <FormControlLabel
+          value="ganaEnergia"
+          control={<Radio />}
+          label="Gana Energia"
+          className="facturadora"
+        />
+        <FormControlLabel
+          value="factorEnergia"
+          control={<Radio />}
+          label="Factor Energia"
           className="facturadora"
         />
       </RadioGroup>

@@ -111,10 +111,17 @@ p {
 .facturadoras {
   width: 100%;
   flex-direction: row !important;
+  
 }
-.facturadoras .facturadora {
-  width: 46%;
+.facturadora{
+  width: 48%;
+  height: 30px;
+  font-size: 0.9rem !important;
 }
+.facturadora span{
+  font-size: 0.9rem;
+}
+
 @media (max-width: 600px) {
   .aplicacion {
     flex-direction: column;
